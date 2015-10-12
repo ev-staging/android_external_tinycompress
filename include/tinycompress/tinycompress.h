@@ -82,10 +82,9 @@ struct compr_gapless_mdata {
 struct compress;
 struct snd_compr_tstamp;
 
-#ifdef ENABLE_EXTENDED_COMPRESS_FORMAT
 union snd_codec_options;
 struct snd_compr_metadata;
-#endif
+
 /*
  * compress_open: open a new compress stream
  * returns the valid struct compress on success, NULL on failure
@@ -238,8 +237,6 @@ int compress_partial_drain(struct compress *compress);
 
 int compress_set_gapless_metadata(struct compress *compress,
 			struct compr_gapless_mdata *mdata);
-
-#ifdef ENABLE_EXTENDED_COMPRESS_FORMAT
 /*
  * compress_set_next_track_param: set params of next compress stream in gapless
  *
@@ -251,7 +248,6 @@ int compress_set_gapless_metadata(struct compress *compress,
 
 int compress_set_next_track_param(struct compress *compress,
 			union snd_codec_options *codec_options);
-#endif
 
 /*
  * is_codec_supported:check if the given codec is supported
@@ -320,7 +316,6 @@ unsigned int compress_get_alsa_rate(unsigned int rate);
   */
 int compress_set_codec_params(struct compress *compress, struct snd_codec *codec);
 
-#ifdef ENABLE_EXTENDED_COMPRESS_FORMAT
 /* set metadata */
 int compress_set_metadata(struct compress *compress,
 	    struct snd_compr_metadata *mdata);
@@ -328,7 +323,6 @@ int compress_set_metadata(struct compress *compress,
 /* get metadata */
 int compress_get_metadata(struct compress *compress,
 	    struct snd_compr_metadata *mdata);
-#endif
 
 #if defined(__cplusplus)
 }
